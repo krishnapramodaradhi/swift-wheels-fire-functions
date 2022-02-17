@@ -26,7 +26,12 @@ exports.fetchAllCars = async (req, res, next) => {
 exports.fetchAllBrands = async (req, res, next) => {
   try {
     const cars = await Car.find();
-    const brands = [...new Set(cars.map(({ _id, brand }) => ({ _id, brand })))];
+    const brands = [];
+    for (const car of cars) {
+      if (!brands.some(({ brand }) => brand === car.brand)) {
+        brands.push({ _id: car._id, brand: car.brand });
+      }
+    }
     res.json({ totalBrands: brands.length, brands });
   } catch (error) {
     next(error);
