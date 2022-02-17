@@ -10,9 +10,9 @@ const validate = require('../middlewares/validator');
 const carSchema = require('../schemas/car');
 
 router
-    .get('/', validate(carSchema.fetchCars, 'query'), fetchAllCars)
-    .get('/search', validate(carSchema.searchCars, 'query'), searchCars)
-    .get('/brands', fetchAllBrands)
-    .get('/:value', validate(carSchema.fetchCar, 'query'), fetchCar);
+  .get('/', validate(carSchema.fetchCars, 'query'), fetchAllCars)
+  .get('/search', validate(carSchema.searchCars, 'query'), searchCars)
+  .get('/brands', fetchAllBrands)
+  .get('/:id', fetchCar);
 
 module.exports = router;
