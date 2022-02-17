@@ -1,7 +1,18 @@
 const router = require('express').Router();
 
-const { fetchAllCars } = require('../controllers/car');
+const {
+  fetchAllCars,
+  fetchAllBrands,
+  searchCars,
+  fetchCar,
+} = require('../controllers/car');
+const validate = require('../middlewares/validator');
+const carSchema = require('../schemas/car');
 
-router.get('/', fetchAllCars).get('/search').get('/:id');
+router
+  .get('/', validate(carSchema.fetchCars, 'query'), fetchAllCars)
+  .get('/search', validate(carSchema.searchCars, 'query'), searchCars)
+  .get('/brands', fetchAllBrands)
+  .get('/:value', validate(carSchema.fetchCar, 'query'), fetchCar);
 
 module.exports = router;
