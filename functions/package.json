@@ -6,7 +6,7 @@
     "serve": "firebase emulators:start --only functions,hosting",
     "shell": "firebase functions:shell",
     "start": "npm run shell",
-    "deploy": "firebase deploy --only functions,hosting",
+    "deploy": "firebase deploy --only functions",
     "debug": "firebase emulators:start --only functions,hosting --inspect-functions",
     "logs": "firebase functions:log"
   },
