@@ -26,7 +26,7 @@ exports.fetchAllCars = async (req, res, next) => {
 exports.fetchAllBrands = async (req, res, next) => {
   try {
     const cars = await Car.find();
-    const brands = [...new Set(cars.map((c) => c.brand))];
+    const brands = [...new Set(cars.map(({ _id, brand }) => ({ _id, brand })))];
     res.json({ totalBrands: brands.length, brands });
   } catch (error) {
     next(error);
@@ -46,11 +46,11 @@ exports.searchCars = async (req, res, next) => {
 
 exports.fetchCar = async (req, res, next) => {
   try {
-    const car = await Car.findOne({ [req.query.field]: req.params.value });
+    const car = await Car.findOne({ _id: req.params.id });
     if (!car) {
       throw {
         ...errors[404],
-        data: `Please check the field - ${req.query.field} or the value - ${req.params.value} passed`,
+        data: `Unable to find the details with the given id - ${req.params.id}`,
       };
     }
     res.json(car);

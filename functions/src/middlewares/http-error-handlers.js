@@ -8,5 +8,5 @@ exports.notFoundHandler = (req, res, next) => {
 };
 
 exports.genericErrorHandler = (err, req, res, next) => {
-  res.status(err.code || 500).json({ error: err });
+  res.status(err.code || 500).json({error: err});
 };

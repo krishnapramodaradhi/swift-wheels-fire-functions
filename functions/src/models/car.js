@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const {Schema, model} = require('mongoose');
 
 const stringType = {
   type: String,
@@ -17,7 +17,7 @@ const booleanType = {
 
 const carsSchema = new Schema({
   brand: stringType,
-  model: { ...stringType, unique: true },
+  model: {...stringType, unique: true},
   year: numberType,
   description: stringType,
   countryCode: stringType,
