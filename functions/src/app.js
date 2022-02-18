@@ -9,7 +9,7 @@ const carRoutes = require('./routes/cars');
 
 const app = express();
 
-app.use('/api/cars', carRoutes);
+app.use('/cars', carRoutes);
 
 app.use(notFoundHandler);
 app.use(genericErrorHandler);
