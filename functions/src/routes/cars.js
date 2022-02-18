@@ -13,6 +13,6 @@ router
   .get('/', validate(carSchema.fetchCars, 'query'), fetchAllCars)
   .get('/search', validate(carSchema.searchCars, 'query'), searchCars)
   .get('/brands', fetchAllBrands)
-  .get('/:id', fetchCar);
+  .get('/:id', validate(carSchema.fetchCar, 'params'), fetchCar);
 
 module.exports = router;
