@@ -8,8 +8,7 @@ exports.fetchAllCars = async (req, res, next) => {
     if (featured) {
       cars = await Car.find({ featured: true });
     } else if (filter) {
-      const queryString = `specifications.${filter}`;
-      cars = await Car.find({ [queryString]: filterValue })
+      cars = await Car.find({ [filter]: filterValue })
         .limit(limit)
         .skip(limit * (page - 1));
     } else {
